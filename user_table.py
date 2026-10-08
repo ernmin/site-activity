@@ -80,6 +80,8 @@ def add_site_activity(df):
         site_activity_list = json.load(file)
     add_subsystem(df, next_pk)
     site_activity_list_new[0].pop("Subsystem", None)
+    add_systembaseline(df, next_pk)
+    site_activity_list_new[0].pop("System Baseline", None)
 
     site_activity_list_new[0]['PK'] = next_pk
     site_activity_list_join = site_activity_list + site_activity_list_new
@@ -102,6 +104,14 @@ def add_subsystem(df, next_pk):
     with open('subsystem.json', 'w') as file:
         json.dump(subsystem_list, file, indent=4)
 
+def add_systembaseline(df, next_pk):
+    systembaseline_entry =  df.to_dict(orient='records')
+    systembaseline_entry_new = [{next_pk: systembaseline_entry[0]["System Baseline"]}]
+    with open('systembaseline.json', 'r') as file:
+        systembaseline_list = json.load(file)
+    systembaseline_list = systembaseline_list + systembaseline_entry_new
+    with open('systembaseline.json', 'w') as file:
+            json.dump(systembaseline_list, file, indent=4)
 
 # def delete_photo(df):
 #     with open('output.json', 'r') as file:
