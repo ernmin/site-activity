@@ -37,17 +37,21 @@ def add_site_activity(df):
     with open(folder_path + 'site_activity.json', 'r') as file:
         site_activity_list = json.load(file)
 
-
+    no_csv_column = ["System Baseline"]
+    no_csv_file = ["systembaseline"]
+    csv_column = ["Subsystem", "Photos or Videos"]
+    csv_file = ["subsystem", "media"]
     # have a list of the expected fields
     # combine into 2 functions, 1 type needing to split based on commas, another expecting a single field
     # arguments to take in are the df, next_pk, field to focus on, file to write to
 
-    add_subsystem(df, next_pk)
-    site_activity_list_new[0].pop("Subsystem", None)
-    add_systembaseline(df, next_pk)
-    site_activity_list_new[0].pop("System Baseline", None)
-    add_media(df, next_pk)
-    site_activity_list_new[0].pop("Photos or Videos", None)
+    for i in range(len(no_csv_column)):
+        add_no_csv(df, next_pk, no_csv_column[i], no_csv_file[i])
+        site_activity_list_new[0].pop(no_csv_column[i], None)
+
+    for i in range(len(csv_column)):
+        add_csv(df, next_pk, csv_column[i], csv_file[i])
+        site_activity_list_new[0].pop(csv_column[i], None)
 
     site_activity_list_new[0]['PK'] = next_pk
     site_activity_list_join = site_activity_list + site_activity_list_new
@@ -56,40 +60,27 @@ def add_site_activity(df):
     with open(folder_path + 'key_info.json', 'w') as file:
         json.dump(key_info, file, indent=4)
 
-def add_subsystem(df, next_pk):
-    subsystem_entry = df.to_dict(orient='records')
-    subsystem_string = subsystem_entry[0]["Subsystem"]
-    subsystem_list_new = subsystem_string.split(",")
-    with open(folder_path + 'subsystem.json', 'r') as file:
-        subsystem_list = json.load(file)
+
+def add_no_csv(df, next_pk, column_name, file_name):
+    entry =  df.to_dict(orient='records')
+    entry_new = [{next_pk: entry[0][column_name]}]
+    with open(folder_path + file_name + '.json', 'r') as file:
+        memory_list = json.load(file)
+    memory_list = memory_list + entry_new
+    with open(folder_path + file_name + '.json', 'w') as file:
+            json.dump(memory_list, file, indent=4)
+
+
+def add_csv(df, next_pk, column_name, file_name):
+    entry = df.to_dict(orient='records')
+    column_string = entry[0][column_name]
+    list_new = column_string.split(",")
+    with open(folder_path + file_name + '.json', 'r') as file:
+        memory_list = json.load(file)
         
-    for item in subsystem_list_new:
-        subsystem_entry_new = [{next_pk: item}]
-        subsystem_list = subsystem_list + subsystem_entry_new
+    for item in list_new:
+        entry_new = [{next_pk: item}]
+        memory_list = memory_list + entry_new
     
-    with open(folder_path + 'subsystem.json', 'w') as file:
-        json.dump(subsystem_list, file, indent=4)
-
-def add_systembaseline(df, next_pk):
-    systembaseline_entry =  df.to_dict(orient='records')
-    systembaseline_entry_new = [{next_pk: systembaseline_entry[0]["System Baseline"]}]
-    with open(folder_path + 'systembaseline.json', 'r') as file:
-        systembaseline_list = json.load(file)
-    systembaseline_list = systembaseline_list + systembaseline_entry_new
-    with open(folder_path + 'systembaseline.json', 'w') as file:
-            json.dump(systembaseline_list, file, indent=4)
-
-def add_media(df, next_pk):
-    media_entry = df.to_dict(orient='records')
-    media_string = media_entry[0]["Photos or Videos"]
-    media_list_new = media_string.split(",")
-    with open(folder_path + 'media.json', 'r') as file:
-        media_list = json.load(file)
-        
-    for item in media_list_new:
-        media_entry_new = [{next_pk: item}]
-        media_list = media_list + media_entry_new
-    
-    with open(folder_path + 'media.json', 'w') as file:
-        json.dump(media_list, file, indent=4)
-
+    with open(folder_path + file_name + '.json', 'w') as file:
+        json.dump(memory_list, file, indent=4)
