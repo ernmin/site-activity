@@ -6,6 +6,11 @@ folder_path = "json_files/"
 
 # from return_entries import refresh_data_cache
 
+csv_column = ["Subsystem", "Photos or Videos", "System Baseline"]
+csv_file = ["subsystem", "media", "systembaseline"]
+personnel_column = ["JRLP (Separate name by a comma and space)", "J152 (Separate name by a comma and space)"]
+test_column = ["Test Cases Passed (Separate each test case conducted by a comma and space)", "Test Cases Failed (Separate each test case conducted by a comma and space)", "Test Cases Pending (Separate each test case conducted by a comma and space)"]
+ISF_column = ["ISFs Opened (Separate each ISF by a comma and space)", "ISFs Closed (Separate each ISF by a comma and space)"]
 
 def transform_and_process_row(row_data, headers, row_index, cell_value):
     """
@@ -39,12 +44,7 @@ def add_site_activity(df):
 
     # no_csv_column = ["System Baseline"]
     # no_csv_file = ["systembaseline"]
-    csv_column = ["Subsystem", 
-                  "Photos or Videos", 
-                  "System Baseline"
-                  ]
-    csv_file = ["subsystem", "media", "systembaseline"]
-    personnel_column = ["JRLP (Separate name by a comma and space)", "J152 (Separate name by a comma and space)"]
+    
     # have a list of the expected fields
     # combine into 2 functions, 1 type needing to split based on commas, another expecting a single field
     # arguments to take in are the df, next_pk, field to focus on, file to write to
@@ -59,6 +59,10 @@ def add_site_activity(df):
 
     for column in personnel_column:
         add_personnel(df, next_pk, column)
+        site_activity_list_new[0].pop(column, None)
+
+    for column in test_column:
+        add_test(df, next_pk, column)
         site_activity_list_new[0].pop(column, None)
     
     site_activity_list_new[0]['PK'] = next_pk
@@ -82,12 +86,12 @@ def add_site_activity(df):
 def add_csv(df, next_pk, column_name, file_name):
     entry = df.to_dict(orient='records')
     column_string = entry[0][column_name]
-    list_new = column_string.split(",")
+    list_new = column_string.split(", ")
     with open(folder_path + file_name + '.json', 'r') as file:
         memory_list = json.load(file)
 
     for item in list_new:
-        entry_new = [{next_pk: item}]
+        entry_new = [{'FK':next_pk, file_name: item}]
         memory_list = memory_list + entry_new
     
     with open(folder_path + file_name + '.json', 'w') as file:
@@ -96,13 +100,27 @@ def add_csv(df, next_pk, column_name, file_name):
 def add_personnel(df, next_pk, column_name):
     entry = df.to_dict(orient='records')
     column_string = entry[0][column_name]
-    list_new = column_string.split(",")
+    list_new = column_string.split(", ")
     with open(folder_path + 'personnel.json', 'r') as file:
         memory_list = json.load(file)
 
     for item in list_new:
-        entry_new = [{next_pk: item, "team": column_name[:4]}]
+        entry_new = [{'FK':next_pk, 'name': item, "team": column_name[:4]}]
         memory_list = memory_list + entry_new
     
     with open(folder_path + 'personnel.json', 'w') as file:
+        json.dump(memory_list, file, indent=4)
+
+def add_test(df, next_pk, column_name):
+    entry = df.to_dict(orient='records')
+    column_string = entry[0][column_name]
+    list_new = column_string.split(", ")
+    with open(folder_path + 'test.json', 'r') as file:
+        memory_list = json.load(file)
+
+    for item in list_new:
+        entry_new = [{'FK':next_pk, 'test': item, "status": column_name[11:15]}]
+        memory_list = memory_list + entry_new
+    
+    with open(folder_path + 'test.json', 'w') as file:
         json.dump(memory_list, file, indent=4)
