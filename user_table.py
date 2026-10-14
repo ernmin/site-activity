@@ -6,11 +6,14 @@ folder_path = "json_files/"
 
 # from return_entries import refresh_data_cache
 
-csv_column = ["Subsystem", "Photos or Videos", "System Baseline"]
+csv_column = ["Subsystem", "Media", "System Baseline"]
 csv_file = ["subsystem", "media", "systembaseline"]
-personnel_column = ["JRLP (Separate name by a comma and space)", "J152 (Separate name by a comma and space)"]
-test_column = ["Test Cases Passed (Separate each test case conducted by a comma and space)", "Test Cases Failed (Separate each test case conducted by a comma and space)", "Test Cases Pending (Separate each test case conducted by a comma and space)"]
-ISF_column = ["ISFs Opened (Separate each ISF by a comma and space)", "ISFs Closed (Separate each ISF by a comma and space)"]
+personnel_column = ["JRLP", "J152"]
+test_column = ["Test Cases Passed", "Test Cases Failed", "Test Cases Pending"]
+ISF_column = ["ISFs Opened", "ISF Closed", "ISF Failed"]
+
+#EDIT COLUMNS ACCORDING TO NEW FORM
+# WHERE TO ADD LOCATION?
 
 def transform_and_process_row(row_data, headers, row_index, cell_value):
     """
@@ -26,11 +29,11 @@ def transform_and_process_row(row_data, headers, row_index, cell_value):
         print('add')
         add_site_activity(df)
 
+        # Can I add a try and except here so no files are written?
+
     elif cell_value == '0':
         print('delete')
         # delete_photo(df)
-
-    print(df)
 
 
 def add_site_activity(df):
@@ -64,6 +67,8 @@ def add_site_activity(df):
     for column in test_column:
         add_test(df, next_pk, column)
         site_activity_list_new[0].pop(column, None)
+
+    #NEED TO POP ISF
     
     site_activity_list_new[0]['PK'] = next_pk
     site_activity_list_join = site_activity_list + site_activity_list_new
@@ -119,7 +124,7 @@ def add_test(df, next_pk, column_name):
         memory_list = json.load(file)
 
     for item in list_new:
-        entry_new = [{'FK':next_pk, 'test': item, "status": column_name[11:15]}]
+        entry_new = [{'FK':next_pk, 'test': item, "status": column_name[12:]}]
         memory_list = memory_list + entry_new
     
     with open(folder_path + 'test.json', 'w') as file:
