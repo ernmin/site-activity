@@ -6,11 +6,11 @@ folder_path = "json_files/"
 
 # from return_entries import refresh_data_cache
 
-csv_column = ["Subsystem", "Media", "System Baseline"]
-csv_file = ["subsystem", "media", "systembaseline"]
+csv_column = ["Subsystem", "Media", "System Baseline", "Location"]
+csv_file = ["subsystem", "media", "systembaseline", "location"]
 personnel_column = ["JRLP", "J152"]
 test_column = ["Test Cases Passed", "Test Cases Failed", "Test Cases Pending"]
-ISF_column = ["ISFs Opened", "ISF Closed", "ISF Failed"]
+ISF_column = ["ISF Opened", "ISF Closed", "ISF Failed"]
 
 #EDIT COLUMNS ACCORDING TO NEW FORM
 # WHERE TO ADD LOCATION?
@@ -68,7 +68,10 @@ def add_site_activity(df):
         add_test(df, next_pk, column)
         site_activity_list_new[0].pop(column, None)
 
-    #NEED TO POP ISF
+    for column in ISF_column:
+        add_ISF(df, next_pk, column)
+        site_activity_list_new[0].pop(column, None)
+
     
     site_activity_list_new[0]['PK'] = next_pk
     site_activity_list_join = site_activity_list + site_activity_list_new
@@ -124,8 +127,22 @@ def add_test(df, next_pk, column_name):
         memory_list = json.load(file)
 
     for item in list_new:
-        entry_new = [{'FK':next_pk, 'test': item, "status": column_name[12:]}]
+        entry_new = [{'FK':next_pk, 'test': item, "status": column_name[11:]}]
         memory_list = memory_list + entry_new
     
     with open(folder_path + 'test.json', 'w') as file:
+        json.dump(memory_list, file, indent=4)
+
+def add_ISF(df, next_pk, column_name):
+    entry = df.to_dict(orient='records')
+    column_string = entry[0][column_name]
+    list_new = column_string.split(", ")
+    with open(folder_path + 'ISF.json', 'r') as file:
+        memory_list = json.load(file)
+
+    for item in list_new:
+        entry_new = [{'FK':next_pk, 'ISF': item, "status": column_name[4:]}]
+        memory_list = memory_list + entry_new
+    
+    with open(folder_path + 'ISF.json', 'w') as file:
         json.dump(memory_list, file, indent=4)
