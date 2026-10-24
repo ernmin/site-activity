@@ -8,19 +8,10 @@ def add_site_activity(df):
         key_info = json.load(file)
     next_pk = key_info[0]["last_pk"] + 1
     key_info[0]["last_pk"] += 1
+    add_raw(df, next_pk)
+    
     with open(folder_path + 'site_activity.json', 'r') as file:
         site_activity_list = json.load(file)
-
-    # no_csv_column = ["System Baseline"]
-    # no_csv_file = ["systembaseline"]
-    
-    # have a list of the expected fields
-    # combine into 2 functions, 1 type needing to split based on commas, another expecting a single field
-    # arguments to take in are the df, next_pk, field to focus on, file to write to
-
-    # for i in range(len(no_csv_column)):
-    #     add_no_csv(df, next_pk, no_csv_column[i], no_csv_file[i])
-    #     site_activity_list_new[0].pop(no_csv_column[i], None)
 
     for i in range(len(csv_column)):
         add_csv(df, next_pk, csv_column[i], csv_file[i])
@@ -46,16 +37,14 @@ def add_site_activity(df):
     with open(folder_path + 'key_info.json', 'w') as file:
         json.dump(key_info, file, indent=4)
 
-
-# def add_no_csv(df, next_pk, column_name, file_name):
-#     entry =  df.to_dict(orient='records')
-#     entry_new = [{next_pk: entry[0][column_name]}]
-#     with open(folder_path + file_name + '.json', 'r') as file:
-#         memory_list = json.load(file)
-#     memory_list = memory_list + entry_new
-#     with open(folder_path + file_name + '.json', 'w') as file:
-#             json.dump(memory_list, file, indent=4)
-
+def add_raw(df, next_pk):
+    raw_list_new = df.to_dict(orient='records')
+    with open(folder_path + 'raw.json', 'r') as file:
+        raw_list = json.load(file)
+    raw_list_new[0]['PK'] = next_pk
+    raw_list_join = raw_list + raw_list_new
+    with open(folder_path + 'raw.json', 'w') as file:
+        json.dump(raw_list_join, file, indent=4)
 
 def add_csv(df, next_pk, column_name, file_name):
     entry = df.to_dict(orient='records')

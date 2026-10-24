@@ -2,4 +2,4 @@ __pycache__
 json_files
 *.json
 .venv
-*.ipynb
+startup.txt
