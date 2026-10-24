@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block description %}
+        <div>Leave a field black if there is no filter applied for that field</div>
+{% endblock %}
+
+{% block content %}
+
+<div>Search for Site Activity</div>
+<form id="userIDForm" class="form-container">
+        <input autocomplete="off" autofocus name="name" placeholder="Date of Site" type="text" id="getID">
+        <button type="submit">Search</button>
+</form>
+
+<div id="displayResult"></div>
+
+{% endblock %}
+
+{% block scripts %}
+    <!-- This puts the script tag into the base.html 'scripts' block -->
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+{% endblock %}

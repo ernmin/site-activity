@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JRL</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    
+</head>
+<body>
+
+    <header class="main-header">
+        <h1>JRL</h1>
+        {% block description %}
+        
+        {% endblock %}
+    </header>
+    
+
+    <div class="content-wrapper">
+        
+        {% block content %}
+        <!-- Child pages (like index.html) will inject their code here -->
+        {% endblock %}
+
+        {% block scripts %}
+
+        {% endblock %}
+    </div>
+
+</body>
+</html>

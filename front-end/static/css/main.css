@@ -1,0 +1,155 @@
+/* 1. LAYOUT - Handles the "Top-Down" structure */
+body {
+    background-color: #0d1117;
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    justify-content: flex-start; /* Title stays at top */
+}
+
+.content-wrapper {
+    width: 100%;       /* Uses 100% of the Viewport Width */
+    min-height: 100vh;  /* Optional: Makes it at least as tall as the screen */
+    
+    /* If you want the content INSIDE to be centered but the 
+       background to be full width, use this: */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.main-header {
+    width: 100%;
+    text-align: center;
+    padding: 1rem 0; /* Space around the title */
+}
+
+.main-header h1 {
+    color: #58a6ff;
+    font-size: 2rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin: 0;
+}
+
+/* 3. INPUTS & BUTTONS - From our previous setup */
+
+input {
+    width: 100%;
+    padding: 12px;
+    background: #0d1117;
+    border: 1px solid #30363d;
+    border-radius: 6px;
+    color: white;
+    box-sizing: border-box;
+}
+
+button {
+    width: 80%;
+    padding: 12px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    background-color: #238636;
+    color: white;
+    transition: background 0.3s;
+}
+
+button:hover {
+    background-color: #2ea043;
+}
+
+button:disabled {
+  background-color: #6a7077;
+  cursor: not-allowed;
+}
+
+.form-container {
+    display: flex;
+    gap: 15px; /* Adjust this value to change the spacing */
+    align-items: center;
+    margin: 20px;
+}
+
+#displayResult {
+  display: flex;
+  justify-content: center; 
+
+}
+
+table {
+  width: 55%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-family: sans-serif;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle depth */
+  overflow: hidden; /* Clips contents to the border radius */
+  border: 1px solid #ffffff; /* Optional: border around the table */
+  border-radius: 12px;
+}
+
+/* Dark blue header */
+th {
+  border-bottom: 1px solid #ffffff; /* Horizontal gridlines */
+  border-right: 1px solid #ffffff;
+  background-color: #1070c4; 
+  color: #ffffff;
+  padding: 8px;
+  text-align: center;
+  font-size: 14px;
+}
+
+td {
+  border-bottom: 1px solid #ffffff; /* Horizontal gridlines */
+  border-right: 1px solid #ffffff;  /* Vertical gridlines */
+  padding: 12px;
+  text-align: center
+}
+
+th:last-child, td:last-child {
+  border-right: none;
+}
+
+tr:last-child th, tr:last-child td {
+  border-bottom: none;
+}
+
+.second-cell {
+  width: 100%;
+  height: auto;
+}
+
+img {
+  width: 100%;
+  height: auto;
+}
+
+
+/* Light blue for table data cells */
+
+a {
+  color: #ffffff
+}
+
+@media screen and (max-width: 768px) {
+  .table-container {
+    overflow-x: auto; /* Adds the horizontal scrollbar */
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+  }
+  table {
+  width: 90%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-family: sans-serif;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle depth */
+  overflow: hidden; /* Clips contents to the border radius */
+  border: 1px solid #ffffff; /* Optional: border around the table */
+  border-radius: 12px;
+}
+}
+
