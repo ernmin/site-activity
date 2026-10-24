@@ -9,7 +9,7 @@ def add_site_activity(df):
     next_pk = key_info[0]["last_pk"] + 1
     key_info[0]["last_pk"] += 1
     add_raw(df, next_pk)
-    
+
     with open(folder_path + 'site_activity.json', 'r') as file:
         site_activity_list = json.load(file)
 

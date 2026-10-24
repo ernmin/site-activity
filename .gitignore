@@ -3,3 +3,5 @@ json_files
 *.json
 .venv
 startup.txt
+frontend_requirements.txt
+txt
