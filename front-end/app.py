@@ -1,12 +1,21 @@
 from flask import Flask, render_template, request, jsonify
+# from date import 
 import requests
 import pandas as pd
 
 app = Flask(__name__)
 
+# app.register_blueprint()
+
 @app.route('/')
 def index():
     return render_template('index.html')
+
+@app.route('/date')
+def date():
+    return render_template('date.html')
+
+#EXPLORE FLASK BLUEPRINTS
 
 
 @app.route("/rows", methods=['POST'])
