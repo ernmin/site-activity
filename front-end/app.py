@@ -1,21 +1,46 @@
 from flask import Flask, render_template, request, jsonify
-# from date import 
+from blueprints.search import search
 import requests
 import pandas as pd
 
 app = Flask(__name__)
 
-# app.register_blueprint()
+app.register_blueprint(search, url_prefix="/search")
 
 @app.route('/')
 def index():
     return render_template('index.html')
 
-@app.route('/date')
-def date():
-    return render_template('date.html')
+# @app.route('/date')
+# def date():
+#     return render_template('date.html')
 
 #EXPLORE FLASK BLUEPRINTS
+
+@app.route("/appdates", methods=['POST'])
+def dates():
+    site_data = request.get_json()
+    ngrok_url = "https://stereo-estrogen-valid.ngrok-free.dev/entries"
+    payload = site_data
+    try:
+        response = requests.get(ngrok_url, params=payload, timeout=5)
+        if response.status_code == 200:
+            print("Success!")
+            df = pd.DataFrame(response.json())
+            html_table = df.to_html(index=False)
+            return jsonify({
+                    "status": "success",
+                    # "serverPayload": local_file_data.get('result', 'No match found')
+                    "result": html_table
+                })
+        elif response.status_code == 429:
+            return jsonify({
+                                "status": "success",
+                                # "serverPayload": local_file_data.get('result', 'No match found')
+                                "result": "You have clicked too many times, try again in a minute"
+                            })
+    except requests.exceptions.RequestException as error:
+            print(f"Error: {error}")
 
 
 @app.route("/rows", methods=['POST'])
