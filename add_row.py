@@ -1,9 +1,32 @@
 
 import json
+from datetime import datetime
+from zoneinfo import ZoneInfo
 from column_config import *
 
+sg_tz = ZoneInfo("Asia/Singapore")
+
+def change_timezone(new_entry):
+    for record in new_entry:
+        for key in ["Timestamp", "Date of Site Activity"]:
+            if key in record and record[key]:
+                # Convert 'Z' suffix to standard UTC offset format for Python parsing
+                utc_dt = datetime.fromisoformat(record[key].replace("Z", "+00:00"))
+                
+                # Shift the timezone to Singapore (UTC+8)
+                sg_dt = utc_dt.astimezone(sg_tz)
+                
+                # Save it back in ISO format (e.g., '2026-10-14T00:00:00+08:00')
+                record[key] = sg_dt.isoformat()
+    return new_entry
+
 def add_site_activity(df):
+    
     site_activity_list_new = df.to_dict(orient='records')
+    breakpoint()
+    site_activity_list_new = change_timezone(site_activity_list_new)
+    breakpoint()
+    
     with open(folder_path + 'key_info.json', 'r') as file:
         key_info = json.load(file)
     next_pk = key_info[0]["last_pk"] + 1

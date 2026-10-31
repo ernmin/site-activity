@@ -11,3 +11,5 @@ ngrok http --url=(insert url here) (insert same port number as flask app)
 6. For timestamp data in google sheets leave them as 'text' datatype
 
 7. There should be a folder called json_files for all the json files that is included in the gitignore file.
+
+8. Create a .venv python 3.14.4 environment to install the different python packages required
