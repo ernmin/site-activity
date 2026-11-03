@@ -23,9 +23,7 @@ def change_timezone(new_entry):
 def add_site_activity(df):
     
     site_activity_list_new = df.to_dict(orient='records')
-    breakpoint()
     site_activity_list_new = change_timezone(site_activity_list_new)
-    breakpoint()
     
     with open(folder_path + 'key_info.json', 'r') as file:
         key_info = json.load(file)
@@ -73,6 +71,8 @@ def add_csv(df, next_pk, column_name, file_name):
     entry = df.to_dict(orient='records')
     column_string = entry[0][column_name]
     list_new = column_string.split(", ")
+    if list_new == ['']:
+        return
     with open(folder_path + file_name + '.json', 'r') as file:
         memory_list = json.load(file)
 
@@ -101,6 +101,8 @@ def add_test(df, next_pk, column_name):
     entry = df.to_dict(orient='records')
     column_string = entry[0][column_name]
     list_new = column_string.split(", ")
+    if list_new == ['']:
+        return
     with open(folder_path + 'test.json', 'r') as file:
         memory_list = json.load(file)
 
@@ -115,6 +117,8 @@ def add_ISF(df, next_pk, column_name):
     entry = df.to_dict(orient='records')
     column_string = entry[0][column_name]
     list_new = column_string.split(", ")
+    if list_new == ['']:
+        return
     with open(folder_path + 'ISF.json', 'r') as file:
         memory_list = json.load(file)
 
