@@ -1,10 +1,7 @@
 import pandas as pd
-import numpy as np
-import json
-from add_row import *
-from delete_row import *
+from utils.add_row import *
+from utils.delete_row import *
 from column_config import *
-# THINK ABOUT HOW TO MINIMIZE CONVERTING TO A DF
 # from return_entries import refresh_data_cache
 
 def transform_and_process_row(row_data, headers, row_index, cell_value):

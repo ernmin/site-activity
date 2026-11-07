@@ -3,7 +3,7 @@ from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
 from flask_limiter.errors import RateLimitExceeded
 from user_table import transform_and_process_row
-from return_search import return_date
+# from return_search import return_date
 # from return_entries import return_entries, return_all_entries, refresh_data_cache
 import pandas as pd
 
