@@ -1,7 +1,7 @@
 import pandas as pd
-from utils.add_row import *
-from utils.delete_row import *
-from column_config import *
+from app.blueprints.utils.add_row import *
+from app.blueprints.utils.delete_row import *
+from app.blueprints.main.column_config import *
 # from return_entries import refresh_data_cache
 
 def transform_and_process_row(row_data, headers, row_index, cell_value):

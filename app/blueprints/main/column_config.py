@@ -1,4 +1,4 @@
-folder_path = "../../json_files/"
+folder_path = "json_files/"
 csv_column = ["Subsystem", "Media", "System Baseline", "Location"]
 csv_file = ["subsystem", "media", "system_baseline", "location"]
 personnel_column = ["JRLP", "J152"]

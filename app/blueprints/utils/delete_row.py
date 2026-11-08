@@ -1,6 +1,6 @@
 import json
 import os
-from column_config import *
+from app.blueprints.main.column_config import *
 
 def delete_site_activity(df):
     timestamp = df['Timestamp'].iloc[0]
