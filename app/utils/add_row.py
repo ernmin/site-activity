@@ -2,7 +2,7 @@
 import json
 from datetime import datetime
 from zoneinfo import ZoneInfo
-from column_config import *
+from blueprints.main.column_config import *
 
 sg_tz = ZoneInfo("Asia/Singapore")
 

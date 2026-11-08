@@ -6,16 +6,17 @@ from user_table import transform_and_process_row
 # from return_search import return_date
 # from return_entries import return_entries, return_all_entries, refresh_data_cache
 import pandas as pd
+from app.blueprints.main import main_bp
 
-app = Flask(__name__)
-limiter = Limiter(
-    key_func=get_remote_address,
-    app=app,
-    default_limits=["20000 per day", "5000 per hour"],
-    storage_uri="memory://",
-)
+# app = Flask(__name__)
+# limiter = Limiter(
+#     key_func=get_remote_address,
+#     app=app,
+#     default_limits=["20000 per day", "5000 per hour"],
+#     storage_uri="memory://",
+# )
 
-@app.route('/webhook', methods=['POST'])
+@main_bp.route('/webhook', methods=['POST'])
 def handle_sheets_update():
     response_headers = {"ngrok-skip-browser-warning": "true"}
     
@@ -55,7 +56,3 @@ def handle_sheets_update():
 #         print(type(json_filtered_rows))
 #         print(json_filtered_rows)
 #         return json_filtered_rows
-
-
-if __name__ == '__main__':
-    app.run(port=5050, debug=True)
