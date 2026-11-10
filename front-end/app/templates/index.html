@@ -1,11 +1,45 @@
 {% extends "base.html" %}
 
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/cards/cards.css') }}">
+{% endblock %}
+
 {% block description %}
 {% endblock %}
 
 {% block content %}
 
-<div>Search Criteria</div>
+<h3>Choose Your Search Criteria</h3>
+
+<div class="carousel-container">
+  <div class="carousel-track">
+    <!-- Card 1 -->
+    <div class="card">
+      <h3>Card Title 1</h3>
+      <p>This is some content inside the first carousel card.</p>
+    </div>
+    <!-- Card 2 -->
+    <div class="card">
+      <h3>Card Title 2</h3>
+      <p>This is some content inside the second carousel card.</p>
+    </div>
+    <!-- Card 3 -->
+    <div class="card">
+      <h3>Card Title 3</h3>
+      <p>This is some content inside the third carousel card.</p>
+    </div>
+    <!-- Card 4 -->
+    <div class="card">
+      <h3>Card Title 4</h3>
+      <p>This is some content inside the fourth carousel card.</p>
+    </div>
+    <!-- Card 5 -->
+    <div class="card">
+      <h3>Card Title 5</h3>
+      <p>This is some content inside the fifth carousel card.</p>
+    </div>
+  </div>
+</div>
 
 
 <div id="displayResult"></div>
@@ -15,4 +49,5 @@
 {% block scripts %}
     <!-- This puts the script tag into the base.html 'scripts' block -->
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/cards.js') }}"></script>
 {% endblock %}

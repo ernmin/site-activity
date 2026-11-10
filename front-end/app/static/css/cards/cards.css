@@ -1,0 +1,50 @@
+.carousel-container {
+  width: 90%;
+  max-width: 800px;
+  overflow: hidden; /* Keeps the view clean */
+  padding-top: 4rem;
+}
+
+/* The horizontal scroll track */
+.carousel-track {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto; /* Enables horizontal scrolling */
+  scroll-snap-type: x mandatory; /* Tells browser to snap items on the X axis */
+  scroll-behavior: smooth;
+  padding: 20px 0;
+  
+  /* Hide standard scrollbars across browsers */
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none; /* Firefox */
+}
+
+.carousel-track::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, and Opera */
+}
+
+/* Individual Card Styling */
+.card {
+  flex: 0 0 125px; /* Don't grow, don't shrink, stay exactly 250px wide */
+  min-height: 200px;
+  background: rgb(244, 245, 243);
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  scroll-snap-align: center; /* Snaps the card perfectly to the center of the screen */
+  transition: transform 0.3s ease;
+  color: black;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+
+@media screen and (max-width: 768px) {
+
+.carousel-container{
+    padding-top: 1rem;
+}
+
+}

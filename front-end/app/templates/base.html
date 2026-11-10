@@ -5,12 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JRL</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
-    
+    {% block head %}
+        
+    {% endblock %}
 </head>
 <body>
 
     <header class="main-header">
-        <h1>JRL</h1>
+        <h1>JRL Site Activity Tracker</h1>
         {% block description %}
         
         {% endblock %}

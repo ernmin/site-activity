@@ -13,7 +13,7 @@ body {
 
 .content-wrapper {
     width: 100%;       /* Uses 100% of the Viewport Width */
-    min-height: 100vh;  /* Optional: Makes it at least as tall as the screen */
+    /*min-height: 100vh;  Optional: Makes it at least as tall as the screen */
     
     /* If you want the content INSIDE to be centered but the 
        background to be full width, use this: */
@@ -25,14 +25,15 @@ body {
 .main-header {
     width: 100%;
     text-align: center;
-    padding: 1rem 0; /* Space around the title */
+    padding: 2rem 0; /* Space around the title */
 }
 
 .main-header h1 {
     color: #58a6ff;
     font-size: 2rem;
     text-transform: uppercase;
-    letter-spacing: 2px;
+    padding-left: 1rem;
+    padding-right: 1rem;
     margin: 0;
 }
 
@@ -151,5 +152,15 @@ a {
   border: 1px solid #ffffff; /* Optional: border around the table */
   border-radius: 12px;
 }
+
+.main-header {
+    padding: 0.2rem
+}
+
+.main-header h1 {
+    font-size: 1.5rem;
+    margin: 0;
+}
+
 }
 
