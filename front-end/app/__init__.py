@@ -14,6 +14,8 @@ def create_app():
     from app.blueprints.main import main_bp
     app.register_blueprint(main_bp)
 
+    from app.blueprints.search import search_bp
+    app.register_blueprint(search_bp)
     # from app.blueprints.auth import auth_bp
     # app.register_blueprint(auth_bp, url_prefix='/auth')
 

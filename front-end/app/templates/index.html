@@ -12,12 +12,20 @@
 <h3>Choose Your Search Criteria</h3>
 
 <div class="carousel-container">
+  <div class="carousel-controls">
+    <button class="carousel-button" type="button" data-direction="-1" aria-label="Scroll to previous card">
+      Previous
+    </button>
+    <button class="carousel-button" type="button" data-direction="1" aria-label="Scroll to next card">
+      Next
+    </button>
+  </div>
   <div class="carousel-track">
     <!-- Card 1 -->
-    <div class="card">
-      <h3>Card Title 1</h3>
-      <p>This is some content inside the first carousel card.</p>
-    </div>
+     <a class="card" href="{{ url_for('search.date') }}">
+        <h3>Date</h3>
+        <p>Return Site Activities Between Two Dates</p>
+      </a>
     <!-- Card 2 -->
     <div class="card">
       <h3>Card Title 2</h3>

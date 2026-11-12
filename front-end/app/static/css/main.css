@@ -134,7 +134,7 @@ img {
 /* Light blue for table data cells */
 
 a {
-  color: #ffffff
+  text-decoration: none;
 }
 
 @media screen and (max-width: 768px) {

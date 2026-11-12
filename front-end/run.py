@@ -1,5 +1,4 @@
 from flask import Flask, render_template, request, jsonify
-from app.blueprints.main.search import search
 import requests
 import pandas as pd
 from app import create_app

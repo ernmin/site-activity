@@ -1,8 +1,24 @@
 .carousel-container {
   width: 90%;
   max-width: 800px;
-  overflow: hidden; /* Keeps the view clean */
+  overflow: hidden;
   padding-top: 4rem;
+}
+
+.carousel-controls {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+}
+
+.carousel-button {
+  padding: 0.5rem 0.75rem;
+  cursor: pointer;
+}
+
+.carousel-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
 }
 
 /* The horizontal scroll track */
