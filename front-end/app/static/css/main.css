@@ -72,9 +72,11 @@ button:disabled {
 
 .form-container {
     display: flex;
+    flex-direction: column;
     gap: 15px; /* Adjust this value to change the spacing */
     align-items: center;
     margin: 20px;
+    flex-wrap: wrap;
 }
 
 #displayResult {

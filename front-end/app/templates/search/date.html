@@ -5,10 +5,14 @@
 
 {% block content %}
 
-<div>Search for Site Activity</div>
-<form id="siteForm" class="form-container">
-        <input autocomplete="off" autofocus name="name" placeholder="Date of Site (From)" type="text" id="dateFrom">
-        <input autocomplete="off" autofocus name="name" placeholder="Date of Site (To)" type="text" id="dateTo">
+<div>Search for Site Activity By Date</div>
+<form id="dateForm" class="form-container">
+        <label>Choose dates:</label>
+        <input type="date" id="dateFrom" name="start" value="YYYY-MM-DD" min="2026-01-01" />
+        <input type="date" id="dateTo" name="end" value="YYYY-MM-DD" min="2026-01-01" />
+
+        <!-- <input autocomplete="off" autofocus name="name" placeholder="Date of Site (From)" type="text" id="dateFrom"> -->
+        <!-- <input autocomplete="off" autofocus name="name" placeholder="Date of Site (To)" type="text" id="dateTo"> -->
         <button type="submit">Search</button>
 </form>
 
@@ -18,5 +22,5 @@
 
 {% block scripts %}
     <!-- This puts the script tag into the base.html 'scripts' block -->
-    <script src="{{ url_for('static', filename='js/script_search.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/search/date.js') }}"></script>
 {% endblock %}

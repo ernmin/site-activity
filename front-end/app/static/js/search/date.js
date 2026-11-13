@@ -1,4 +1,4 @@
-document.querySelector('#siteForm').addEventListener('submit', (event) => {
+document.querySelector('#dateForm').addEventListener('submit', (event) => {
     event.preventDefault();
     get_dates();
     // submitID();
@@ -13,7 +13,7 @@ async function get_dates() {
 function submitDates() {
     const dateFrom = document.querySelector('#dateFrom').value;
     const dateTo = document.querySelector('#dateTo').value;
-    document.getElementById('displayResult').innerText = dateFrom;
+    document.getElementById('displayResult').innerText = dateFrom + ' ' + dateTo;
     // return fetch('/appdates', {
     //     method: 'POST',
     //     headers: { 'Content-Type': 'application/json' },
