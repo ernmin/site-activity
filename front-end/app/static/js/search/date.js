@@ -13,22 +13,22 @@ async function get_dates() {
 function submitDates() {
     const dateFrom = document.querySelector('#dateFrom').value;
     const dateTo = document.querySelector('#dateTo').value;
-    document.getElementById('displayResult').innerText = dateFrom + ' ' + dateTo;
-    // return fetch('/appdates', {
-    //     method: 'POST',
-    //     headers: { 'Content-Type': 'application/json' },
-    //     body: JSON.stringify({ 
-    //         searchfrom: dateFrom,
-    //         searchto: dateTo 
-    //     })
-    // })
-    // .then(response => response.json())
-    // .then(data => {
-    //     document.getElementById('displayResult').innerHTML = data.result;
-    // })
-    // .catch(error => {
-    //     console.error('Error:', error);
-    // });
+    // document.getElementById('displayResult').innerText = dateFrom + ' ' + dateTo;
+    return fetch('/searchdate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ 
+            searchFrom: dateFrom,
+            searchTo: dateTo 
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        document.getElementById('displayResult').innerText = data.result;
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
 }
 
 

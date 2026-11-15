@@ -7,13 +7,14 @@
 
 .carousel-controls {
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   gap: 0.5rem;
 }
 
 .carousel-button {
   padding: 0.5rem 0.75rem;
   cursor: pointer;
+  max-width: 5rem;
 }
 
 .carousel-button:disabled {
