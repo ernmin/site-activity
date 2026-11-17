@@ -40,19 +40,19 @@ def handle_sheets_update():
 
     return jsonify({"status": "success", "processed_row": row_index}), 200, response_headers
 
-# @app.route('/entries', methods=['GET'])
+@main_bp.route('/searchdate', methods=['GET'])
 # @limiter.limit("1 per second")
-# def get_entries():
-#     response_headers = {"ngrok-skip-browser-warning": "true"}
-#     received_var = request.args.get('requestedUser')
-#     print(f"Heroku sent me this variable: {received_var}")
+def get_entries():
+    response_headers = {"ngrok-skip-browser-warning": "true"}
+    received_var = request.args.get('requestedUser')
+    print(f"Heroku sent me this variable: {received_var}")
 
-#     if received_var == 'ALLzxc':
-#         json_rows = return_all_entries()
-#         print(json_rows)
-#         return json_rows
-#     else:
-#         json_filtered_rows = return_entries(received_var)
-#         print(type(json_filtered_rows))
-#         print(json_filtered_rows)
-#         return json_filtered_rows
+    # if received_var == 'ALLzxc':
+    #     json_rows = return_all_entries()
+    #     print(json_rows)
+    #     return json_rows
+    # else:
+    #     json_filtered_rows = return_entries(received_var)
+    #     print(type(json_filtered_rows))
+    #     print(json_filtered_rows)
+    #     return json_filtered_rows

@@ -5,3 +5,4 @@ json_files
 startup.txt
 frontend_requirements.txt
 txt
+config.py
