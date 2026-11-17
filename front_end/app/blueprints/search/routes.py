@@ -1,6 +1,7 @@
 # app/blueprints/dashboard/routes.py
 from flask import render_template, request, jsonify
 from app.blueprints.search import search_bp
+from app.blueprints.search import get_data
 
 @search_bp.route('/date')
 def date():
