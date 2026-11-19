@@ -1,18 +1,33 @@
 import json
 import os
+from datetime import datetime
+from zoneinfo import ZoneInfo
 from app.blueprints.main.column_config import *
+# from app.blueprints.utils.add_row import change_timezone
+
+sg_tz = ZoneInfo("Asia/Singapore")
 
 def delete_site_activity(df):
     timestamp = df['Timestamp'].iloc[0]
+    timestamp = datetime.fromisoformat(timestamp.replace("Z", "+00:00"))
+    timestamp = timestamp.astimezone(sg_tz).isoformat()
     date_site_activity = df['Date of Site Activity'].iloc[0]
+    date_site_activity = datetime.fromisoformat(date_site_activity.replace("Z", "+00:00"))
+    date_site_activity = date_site_activity.astimezone(sg_tz).isoformat()
+    
+    print(type(timestamp), type(date_site_activity))
     print(timestamp, date_site_activity)
-    print(find_primary_key(timestamp, date_site_activity))
+    find_primary_key(timestamp, date_site_activity)
+    # print('primary key', find_primary_key(timestamp, date_site_activity))
 
 def find_primary_key(timestamp, date_site_activity):
     with open(folder_path + 'site_activity.json', 'r') as file:
         site_activity_list = json.load(file)
+    # breakpoint()
     for item in site_activity_list:
+        print(timestamp, item['Timestamp'], date_site_activity, item['Date of Site Activity'])
         if timestamp == item['Timestamp'] and date_site_activity == item['Date of Site Activity']:
+            print(item['PK'])
             delete_all_assoc_entries(item['PK'])
             # return item['PK']
 

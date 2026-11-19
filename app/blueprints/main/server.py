@@ -44,8 +44,9 @@ def handle_sheets_update():
 # @limiter.limit("1 per second")
 def get_entries():
     response_headers = {"ngrok-skip-browser-warning": "true"}
-    received_var = request.args.get('requestedUser')
+    received_var = request.args.get('searchFrom')
     print(f"Heroku sent me this variable: {received_var}")
+    return received_var
 
     # if received_var == 'ALLzxc':
     #     json_rows = return_all_entries()

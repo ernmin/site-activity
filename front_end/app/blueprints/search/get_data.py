@@ -1,4 +1,32 @@
-from front_end import ngrok_url
+from app.config import NGROK_URL
+from flask import request, jsonify
+import requests
+import pandas as pd
 
-def get_data():
+def get_data(site_data):
+    print(site_data)
+    print(NGROK_URL)
+    try:
+        response = requests.get(NGROK_URL + 'searchdate', params=site_data, timeout=5)
+        if response.status_code == 200:
+            print("Success!")
+            data_response = response.json()
+            print(data_response)
+            # df = pd.DataFrame(response.json())
+            # html_table = df.to_html(index=False)
+            # return jsonify({
+            #         "status": "success",
+            #         # "serverPayload": local_file_data.get('result', 'No match found')
+            #         "result": html_table
+            #     })
+        elif response.status_code == 429:
+            return jsonify({
+                                "status": "success",
+                                # "serverPayload": local_file_data.get('result', 'No match found')
+                                "result": "You have clicked too many times, try again in a minute"
+                            })
+
+    except requests.exceptions.RequestException as error:
+        print(f"Error: {error}")
+        # resolve error
     return

@@ -1,7 +1,7 @@
 # app/blueprints/dashboard/routes.py
 from flask import render_template, request, jsonify
 from app.blueprints.search import search_bp
-from app.blueprints.search import get_data
+from app.blueprints.search.get_data import get_data
 
 @search_bp.route('/date')
 def date():
@@ -12,6 +12,6 @@ def searchdate():
     site_data = request.get_json()
     dateFrom = site_data.get('searchFrom', '')
     dateTo = site_data.get('searchTo', '')
-    breakpoint()
+    get_data(site_data)
     # send data to server.py at this point
     return jsonify(result=f"{dateFrom} {dateTo}")
