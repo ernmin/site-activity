@@ -1,7 +1,9 @@
 import pandas as pd
 import duckdb
+from app.load_json import all_df
 
 def search_date(from_date, to_date):
+    site_activity = all_df['site_activity']
     query = """
     SELECT *
     FROM site_activity
