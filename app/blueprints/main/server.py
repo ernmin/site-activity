@@ -1,12 +1,14 @@
 from flask import Flask, request, jsonify
-from flask_limiter import Limiter
-from flask_limiter.util import get_remote_address
-from flask_limiter.errors import RateLimitExceeded
+# from flask_limiter import Limiter
+# from flask_limiter.util import get_remote_address
+# from flask_limiter.errors import RateLimitExceeded
 from app.blueprints.main.user_table import transform_and_process_row
 # from return_search import return_date
 # from return_entries import return_entries, return_all_entries, refresh_data_cache
 import pandas as pd
 from app.blueprints.main import main_bp
+from app.blueprints.search_modules.date import search_date
+from app.load_json import all_df
 
 # app = Flask(__name__)
 # limiter = Limiter(
@@ -44,9 +46,11 @@ def handle_sheets_update():
 # @limiter.limit("1 per second")
 def get_entries():
     response_headers = {"ngrok-skip-browser-warning": "true"}
-    received_var = request.args.get('searchFrom')
-    print(f"Heroku sent me this variable: {received_var}")
-    return received_var
+    search_from = request.args.get('searchFrom')
+    search_to = request.args.get('searchTo')
+    print(f"Heroku sent me this variable: {search_from, search_to}")
+    print(all_df.keys())
+    return jsonify({"status": "success"}), 200, response_headers
 
     # if received_var == 'ALLzxc':
     #     json_rows = return_all_entries()
