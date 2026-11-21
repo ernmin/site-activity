@@ -24,7 +24,7 @@ function submitDates() {
     })
     .then(response => response.json())
     .then(data => {
-        document.getElementById('displayResult').innerText = data.result;
+        document.getElementById('displayResult').innerHTML = data.result;
     })
     .catch(error => {
         console.error('Error:', error);

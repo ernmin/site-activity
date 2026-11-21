@@ -5,7 +5,7 @@ def create_app():
     app = Flask(__name__)
 
     init_db()
-    timestamp()
+    # timestamp()
     print('json files loaded')
 
     #register blueprints

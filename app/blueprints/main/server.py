@@ -50,8 +50,9 @@ def get_entries():
     search_to = request.args.get('searchTo')
     print(f"Heroku sent me this variable: {search_from, search_to}")
     print(all_df.keys())
-    print(search_date(search_from, search_to))
-    return jsonify({"status": "success"}), 200, response_headers
+    filtered_dates = search_date(search_from, search_to)
+    print(filtered_dates)
+    return filtered_dates
 
     # if received_var == 'ALLzxc':
     #     json_rows = return_all_entries()

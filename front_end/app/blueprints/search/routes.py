@@ -12,6 +12,7 @@ def searchdate():
     site_data = request.get_json()
     dateFrom = site_data.get('searchFrom', '')
     dateTo = site_data.get('searchTo', '')
-    get_data(site_data)
+    table = get_data(site_data)
+    return table
     # send data to server.py at this point
-    return jsonify(result=f"{dateFrom} {dateTo}")
+    # return jsonify(result=f"{dateFrom} {dateTo}")

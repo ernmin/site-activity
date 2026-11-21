@@ -12,13 +12,13 @@ def get_data(site_data):
             print("Success!")
             data_response = response.json()
             print(data_response)
-            # df = pd.DataFrame(response.json())
-            # html_table = df.to_html(index=False)
-            # return jsonify({
-            #         "status": "success",
-            #         # "serverPayload": local_file_data.get('result', 'No match found')
-            #         "result": html_table
-            #     })
+            df = pd.DataFrame(response.json())
+            html_table = df.to_html(index=False)
+            return jsonify({
+                    "status": "success",
+                    # "serverPayload": local_file_data.get('result', 'No match found')
+                    "result": html_table
+                })
         elif response.status_code == 429:
             return jsonify({
                                 "status": "success",
