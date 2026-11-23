@@ -1,0 +1,29 @@
+@media screen and (max-width: 768px) {
+
+table {
+  width: 30%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-family: sans-serif;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle depth */
+  overflow: hidden; /* Clips contents to the border radius */
+  border: 1px solid #ffffff; /* Optional: border around the table */
+  border-radius: 12px;
+}
+
+th, td {
+    font-size: small;
+    overflow-wrap: anywhere;
+}
+
+#displayResult {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+#displayResult table {
+  width: 80%;
+  min-width: 0;
+}
+}

@@ -80,10 +80,11 @@ button:disabled {
 }
 
 #displayResult {
-  display: flex;
-  justify-content: center; 
-
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
 }
+
 
 table {
   width: 55%;
@@ -94,6 +95,8 @@ table {
   overflow: hidden; /* Clips contents to the border radius */
   border: 1px solid #ffffff; /* Optional: border around the table */
   border-radius: 12px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* Dark blue header */
@@ -144,16 +147,6 @@ a {
     overflow-x: auto; /* Adds the horizontal scrollbar */
     -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
   }
-  table {
-  width: 90%;
-  border-collapse: separate;
-  border-spacing: 0;
-  font-family: sans-serif;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle depth */
-  overflow: hidden; /* Clips contents to the border radius */
-  border: 1px solid #ffffff; /* Optional: border around the table */
-  border-radius: 12px;
-}
 
 .main-header {
     padding: 0.2rem

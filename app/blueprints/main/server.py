@@ -51,7 +51,7 @@ def get_entries():
     print(f"Heroku sent me this variable: {search_from, search_to}")
     print(all_df.keys())
     filtered_dates = search_date(search_from, search_to)
-    print(filtered_dates)
+    print('filtered', filtered_dates)
     return filtered_dates
 
     # if received_var == 'ALLzxc':

@@ -3,6 +3,7 @@ from .load_json import init_db, timestamp
 
 def create_app():
     app = Flask(__name__)
+    app.json.sort_keys = False
 
     init_db()
     # timestamp()
