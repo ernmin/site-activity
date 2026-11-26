@@ -24,6 +24,7 @@ function submitDates() {
     })
     .then(response => response.json())
     .then(data => {
+        console.log(data)
         document.getElementById('displayResult').innerHTML = data.result;
         changeDates();
     })
@@ -51,6 +52,8 @@ function changeDates() {
         }
     } else {
       console.warn(`Header "${targetHeader}" not found.`);
+      document.getElementById('displayResult').innerHTML = 'No Site Activities'
+
     }
 }
 

@@ -17,7 +17,6 @@ def searchdate():
     dateFrom = site_data.get('searchFrom', '')
     dateTo = site_data.get('searchTo', '')
     table = get_data(site_data)
-    breakpoint()
     return table
     # send data to server.py at this point
     # return jsonify(result=f"{dateFrom} {dateTo}")
