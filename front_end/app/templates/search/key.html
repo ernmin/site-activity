@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block head %}
-<!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/table/table.css') }}"> -->
+<!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/search/key.css') }}"> -->
 {% endblock %}
 
 {% block description %}
@@ -10,6 +10,12 @@
 {% block content %}
 
 <div>Individual Site Activity</div>
+<form id="keyForm" class="form-container">
+        <label for="siteID">Enter Site ID</label>
+        <input type="number" id="siteID" name="siteID" min="1" placeholder="e.g. 1"/>
+        <button type="submit">Search</button>
+</form>
+
 
 <div id="displayResult"></div>
 
@@ -17,5 +23,5 @@
 
 {% block scripts %}
     <!-- This puts the script tag into the base.html 'scripts' block -->
-    <!-- <script src="{{ url_for('static', filename='js/search/date.js') }}"></script> -->
+    <script src="{{ url_for('static', filename='js/search/key.js') }}"></script>
 {% endblock %}

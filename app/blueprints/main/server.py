@@ -65,12 +65,12 @@ def get_entries():
     #     print(json_filtered_rows)
     #     return json_filtered_rows
 
-# @main_bp.route('/searchPK', methods=['GET'])
-# # @limiter.limit("1 per second")
-# def get_entries_key():
-#     response_headers = {"ngrok-skip-browser-warning": "true"}
-#     primary_key = request.args.get('searchFrom')
-#     print(f"Heroku sent me this variable: {primary_key}")
-#     print(all_df.keys())
-#     site_activity = search_site_activity(primary_key)
-#     return site_activity
+@main_bp.route('/searchkey', methods=['GET'])
+# @limiter.limit("1 per second")
+def get_entries_key():
+    response_headers = {"ngrok-skip-browser-warning": "true"}
+    primary_key = request.args.get('siteID')
+    print(f"Heroku sent me this variable: {primary_key}")
+    print(all_df.keys())
+    site_activity = search_site_activity(primary_key)
+    return site_activity

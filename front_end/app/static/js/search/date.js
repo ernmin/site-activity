@@ -32,7 +32,6 @@ function submitDates() {
         console.error('Error:', error);
     });
 }
-
 function changeDates() {
     const table = document.querySelector('.dataframe');
     const targetHeader = "Date";
