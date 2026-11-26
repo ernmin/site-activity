@@ -7,12 +7,17 @@ from app.blueprints.search.get_data import get_data
 def date():
     return render_template('search/date.html')
 
+@search_bp.route('/key')
+def key():
+    return render_template('search/key.html')
+
 @search_bp.route('/searchdate', methods=['POST'])
 def searchdate():
     site_data = request.get_json()
     dateFrom = site_data.get('searchFrom', '')
     dateTo = site_data.get('searchTo', '')
     table = get_data(site_data)
+    breakpoint()
     return table
     # send data to server.py at this point
     # return jsonify(result=f"{dateFrom} {dateTo}")

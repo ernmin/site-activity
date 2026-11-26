@@ -8,6 +8,7 @@ from app.blueprints.main.user_table import transform_and_process_row
 import pandas as pd
 from app.blueprints.main import main_bp
 from app.blueprints.search_modules.date import search_date
+from app.blueprints.search_modules.site_activity import search_site_activity
 from app.load_json import all_df
 
 # app = Flask(__name__)
@@ -63,3 +64,13 @@ def get_entries():
     #     print(type(json_filtered_rows))
     #     print(json_filtered_rows)
     #     return json_filtered_rows
+
+# @main_bp.route('/searchPK', methods=['GET'])
+# # @limiter.limit("1 per second")
+# def get_entries_key():
+#     response_headers = {"ngrok-skip-browser-warning": "true"}
+#     primary_key = request.args.get('searchFrom')
+#     print(f"Heroku sent me this variable: {primary_key}")
+#     print(all_df.keys())
+#     site_activity = search_site_activity(primary_key)
+#     return site_activity
