@@ -24,36 +24,30 @@ function submitID() {
     .then(data => {
         console.log(data)
         document.getElementById('displayResult').innerHTML = data.result;
-        // changeDates();
+        changeDates();
     })
     .catch(error => {
         console.error('Error:', error);
     });
 }
 
-// function changeDates() {
-//     const table = document.querySelector('.dataframe');
-//     const targetHeader = "Date";
-//     const headers = Array.from(table.rows[0].cells);
+function changeDates() {
+    const table = document.querySelector('.dataframe');
+    const targetHeader = "Date";
+    const dateRow = table && Array.from(table.rows).find(
+        (row) => row.cells[0] && row.cells[0].textContent.trim() === targetHeader
+    );
 
-//     const colIndex = headers.findIndex(
-//         (th) => th.textContent.trim() === targetHeader
-//     );
-
-//     if (colIndex !== -1) {
-//         for (let i = 1; i < table.rows.length; i++) {
-//             const cell = table.rows[i].cells[colIndex];
-//             if (cell) {
-//                 const dateOnly = cell.textContent.split('T');
-//                 cell.textContent = dateOnly[0];
-//             }
-//         }
-//     } else {
-//       console.warn(`Header "${targetHeader}" not found.`);
-//       document.getElementById('displayResult').innerHTML = 'No Site Activities'
-
-//     }
-// }
+    if (dateRow) {
+        for (let i = 1; i < dateRow.cells.length; i++) {
+            const cell = dateRow.cells[i];
+            cell.textContent = cell.textContent.trim().split('T')[0];
+        }
+    } else {
+        console.warn(`Row "${targetHeader}" not found.`);
+        document.getElementById('displayResult').innerHTML = 'No Site Activities';
+    }
+}
 
 /*learn error handling here*/
 

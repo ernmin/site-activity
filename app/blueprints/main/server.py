@@ -8,7 +8,7 @@ from app.blueprints.main.user_table import transform_and_process_row
 import pandas as pd
 from app.blueprints.main import main_bp
 from app.blueprints.search_modules.date import search_date
-from app.blueprints.search_modules.site_activity import search_site_activity
+from app.blueprints.search_modules.site_activity import *
 from app.load_json import all_df
 
 # app = Flask(__name__)
@@ -72,5 +72,8 @@ def get_entries_key():
     primary_key = request.args.get('siteID')
     print(f"Heroku sent me this variable: {primary_key}")
     print(all_df.keys())
-    site_activity = search_site_activity(primary_key)
+    # site_activity = search_site_activity(primary_key)
+    # site_activity = search_personnel(primary_key)
+    site_activity = search_raw(primary_key)
+    print(site_activity)
     return site_activity

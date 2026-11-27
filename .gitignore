@@ -6,3 +6,4 @@ startup.txt
 frontend_requirements.txt
 txt
 config.py
+secrets

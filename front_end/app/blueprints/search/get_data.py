@@ -13,7 +13,11 @@ def get_data(site_data, route):
             data_response = response.json()
             print(data_response)
             df = pd.DataFrame(response.json())
-            html_table = df.to_html(index=False)
+            print(route)
+            if route == 'searchkey':
+                html_table = df.T.to_html(header=False)
+            else:
+                html_table = df.to_html(index=False)
             return jsonify({
                     "status": "success",
                     # "serverPayload": local_file_data.get('result', 'No match found')

@@ -13,3 +13,6 @@ ngrok http --url=(insert url here) (insert same port number as flask app)
 7. There should be a folder called json_files for all the json files that is included in the gitignore file.
 
 8. Create a .venv python 3.14.4 environment to install the different python packages required
+
+9. Create a Google Cloud Project and create a service account and a key for that service account.
+If deploying on Render, then add a secret file in environment. If deploying on Railway, store it in a Railway environment variable (GOOGLE_APPLICATION_CREDENTIALS_JSON)
